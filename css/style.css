@@ -11,3 +11,10 @@ h1 {
     outline: solid black 1px;
     margin: 0 auto;
 }
+
+.square {
+    box-sizing: border-box;
+    border: solid black 1px;
+    width: 40px;
+    height: 40px;
+}
