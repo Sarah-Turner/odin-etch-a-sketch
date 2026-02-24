@@ -5,11 +5,11 @@ function createGrid(gridSize) {
         gridSize = 100;
     }
 
-    let container = document.querySelector("#grid-container");
-    let containerLength = container.offsetWidth;
-    let squareSize = containerLength / gridSize;
+    const container = document.querySelector("#grid-container");
+    const containerLength = container.offsetWidth;
+    const squareSize = containerLength / gridSize;
     for (let i = 0; i < gridSize * gridSize; i++) {
-        let square = document.createElement("div");
+        const square = document.createElement("div");
         square.classList.toggle("square");
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
@@ -18,15 +18,27 @@ function createGrid(gridSize) {
 }
 
 function hoverOver(event) {
-    let target = event.target;
+    const target = event.target;
     if (target.className === "square") {
         target.style.backgroundColor = "red";
     }
 }
 
+function pressBtn(event) {
+    const target = event.target;
+    if (target.id === "resize-button") {
+        let newSize = prompt("Enter grid size (1-100): ");
+        const grid = document.querySelector("#grid-container");
+        while(grid.lastChild) {
+            grid.removeChild(grid.lastChild);
+        }
+        createGrid(newSize);
+    }
+}
+
 function initializeGrid() {
-    let gridContainer = document.querySelector("#grid-container");
-    gridContainer.addEventListener("mouseover", hoverOver);
+    document.addEventListener("mouseover", hoverOver);
+    document.addEventListener("click", pressBtn);
     createGrid(16);
 }
 
