@@ -16,4 +16,17 @@ function createGrid(gridSize) {
     }
 }
 
-createGrid(1);
+function hoverOver(event) {
+    let target = event.target;
+    if (target.className === "square") {
+        target.style.backgroundColor = "red";
+    }
+}
+
+function initializeGrid() {
+    let gridContainer = document.querySelector("#grid-container");
+    gridContainer.addEventListener("mouseover", hoverOver);
+    createGrid(16);
+}
+
+initializeGrid();
